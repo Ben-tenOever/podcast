@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Microbiology Podcast</title>
+    <link>https://ben-tenoever.github.io/podcast/</link>
+    <atom:link href="https://ben-tenoever.github.io/podcast/feed.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <description>Conversations about the science, people, and programs of the NYU Langone Department of Microbiology, NYU Grossman School of Medicine.</description>
+    <itunes:author>Department of Microbiology, NYU Grossman School of Medicine</itunes:author>
+    <itunes:image href="https://ben-tenoever.github.io/podcast/assets/cover.png" />
+    <image><url>https://ben-tenoever.github.io/podcast/assets/cover.png</url><title>The Microbiology Podcast</title><link>https://ben-tenoever.github.io/podcast/</link></image>
+    <itunes:category text="Science"><itunes:category text="Life Sciences" /></itunes:category>
+    <itunes:explicit>false</itunes:explicit>
+    <itunes:type>episodic</itunes:type>
+
+    <!-- New episodes go at the top, above this line -->
+    <item>
+      <title>Faculty Narratives 2026</title>
+      <itunes:episode>1</itunes:episode>
+      <description>A guided tour of the department's 2026 research map — how our labs fit together across five domains, and the control points that decide a pathogen's fate.</description>
+      <enclosure url="https://ben-tenoever.github.io/podcast/audio/ep01-faculty-narratives-2026.mp3" length="22881925" type="audio/mpeg" />
+      <guid isPermaLink="false">micro-podcast-ep01</guid>
+      <pubDate>Tue, 22 Sep 2026 12:00:00 -0400</pubDate>
+      <itunes:duration>47:40</itunes:duration>
+      <link>https://ben-tenoever.github.io/podcast/#ep01</link>
+    </item>
+  </channel>
+</rss>

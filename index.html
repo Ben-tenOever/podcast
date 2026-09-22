@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Microbiology Podcast &mdash; Department of Microbiology, NYU Grossman School of Medicine</title>
+<meta name="description" content="Listen to or download episodes of The Microbiology Podcast from the NYU Langone Department of Microbiology." />
+<meta property="og:title" content="The Microbiology Podcast" />
+<meta property="og:description" content="Listen to or download episodes from the NYU Langone Department of Microbiology." />
+<meta property="og:image" content="https://ben-tenoever.github.io/podcast/assets/cover.png" />
+<meta property="og:url" content="https://ben-tenoever.github.io/podcast/" />
+<meta name="theme-color" content="#4F2C85" />
+<link rel="icon" href="assets/cover-600.png" />
+<link rel="apple-touch-icon" href="assets/cover-600.png" />
+<link rel="alternate" type="application/rss+xml" title="The Microbiology Podcast" href="feed.xml" />
+<style>
+:root {
+  --nyu-purple: #4F2C85;
+  --nyu-deep: #2a1a49;
+  --bg-light: #f5f5f7;
+  --card-bg: #ffffff;
+  --border-subtle: #e3e3ee;
+  --text-main: #222222;
+  --text-soft: #56566a;
+  --lav: #faf7ff;
+}
+* { box-sizing: border-box; }
+body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0; padding: 0; background: var(--bg-light); color: var(--text-main); line-height: 1.55; }
+header { background: #ffffff; color: var(--nyu-purple); padding: 1.1rem 2rem 1rem;
+  border-bottom: 5px solid var(--nyu-purple);
+  display: flex; align-items: center; gap: 1.15rem; flex-wrap: wrap; }
+header .brand { flex: 0 0 auto; display: flex; align-items: center; }
+header .brand img { height: 52px; width: auto; display: block; border-radius: .3rem; }
+header .brand + .titles { border-left: 1px solid var(--border-subtle); padding-left: 1.15rem; }
+header .titles { flex: 1 1 260px; min-width: 0; }
+header h1 { margin: 0; font-size: 1.9rem; color: var(--nyu-purple); }
+header p { margin: .2rem 0 0; color: var(--text-soft); font-size: .95rem; }
+@media (max-width: 560px) {
+  header { gap: .6rem; padding: 1rem 1rem .9rem; }
+  header .titles { flex: 1 1 100%; }
+  header .brand + .titles { border-left: 0; padding-left: 0; }
+  header .brand img { height: 40px; }
+  header h1 { font-size: 1.55rem; }
+}
+nav { position: sticky; top: 0; background: var(--lav); border-bottom: 1px solid #ddd4ff;
+  padding: .45rem 2rem; display: flex; gap: 1rem; flex-wrap: wrap; z-index: 10; }
+nav a { text-decoration: none; color: var(--nyu-purple); font-size: .9rem;
+  padding: .25rem .7rem; border-radius: 999px; font-weight: 500; }
+nav a:hover { background: rgba(79,44,133,.08); }
+nav a.here { background: var(--nyu-purple); color: #fff; }
+@media (max-width: 560px) { nav { padding: .45rem 1rem; gap: .3rem; } }
+main { max-width: 980px; margin: 0 auto; padding: 2rem 2.25rem 3rem; }
+@media (max-width: 560px) { main { padding: 1.1rem 1rem 2.5rem; } }
+.card { background: var(--card-bg); border-radius: .9rem; padding: 1.3rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05); border: 1px solid var(--border-subtle); }
+@media (max-width: 560px) { .card { padding: 1.1rem; } }
+h2 { margin-top: 0; color: var(--nyu-purple); }
+.section-spacer { margin-top: 1.5rem; }
+.sub { color: var(--text-soft); font-size: .85rem; }
+a:focus-visible, button:focus-visible { outline: 3px solid #b99be6; outline-offset: 2px; }
+
+/* now playing */
+.now { display: grid; grid-template-columns: 200px 1fr; gap: 1.5rem; align-items: start; }
+@media (max-width: 640px) { .now { grid-template-columns: 1fr; gap: 1rem; } .now .art { max-width: 180px; } }
+.art img { width: 100%; aspect-ratio: 1; border-radius: .7rem; display: block; box-shadow: 0 4px 14px rgba(79,44,133,.25); }
+.kicker { font-size: .7rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--text-soft); }
+.now h2 { margin: .15rem 0 .1rem; font-size: 1.6rem; line-height: 1.2; color: var(--nyu-deep); }
+.meta { font-size: .85rem; color: var(--text-soft); }
+.summary { margin: .7rem 0 0; max-width: 64ch; }
+audio { width: 100%; margin-top: 1rem; display: block; }
+.speed { display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; margin-top: .6rem; }
+.speed .lbl { font-size: .78rem; color: var(--text-soft); margin-right: .2rem; }
+.chip { font: inherit; font-size: .8rem; cursor: pointer; background: #fff; color: var(--nyu-purple);
+  border: 1px solid var(--border-subtle); border-radius: 999px; padding: .2rem .65rem; font-weight: 600; }
+.chip:hover { border-color: var(--nyu-purple); }
+.chip[aria-pressed="true"] { background: var(--nyu-purple); border-color: var(--nyu-purple); color: #fff; }
+.actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.1rem; }
+.btn { font: inherit; font-size: .92rem; font-weight: 600; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: .45rem; border-radius: 999px; padding: .55rem 1.15rem;
+  border: 1.5px solid var(--nyu-purple); background: #fff; color: var(--nyu-purple); }
+.btn.primary { background: var(--nyu-purple); color: #fff; }
+.btn:hover { filter: brightness(1.08); box-shadow: 0 2px 8px rgba(79,44,133,.2); }
+.btn svg { width: 1.05em; height: 1.05em; }
+.topics { margin: .5rem 0 0; padding: .8rem 1rem; background: var(--lav); border-radius: .6rem; border: 1px solid #ece4fb; }
+.topics h3 { margin: 0 0 .35rem; font-size: .72rem; letter-spacing: .09em; text-transform: uppercase; color: var(--nyu-purple); }
+.topics ol { margin: 0; padding-left: 1.2rem; font-size: .9rem; }
+.topics li { margin: .15rem 0; }
+.toast { font-size: .8rem; color: var(--nyu-purple); font-weight: 600; min-height: 1.2em; margin-top: .4rem; }
+
+/* episode list */
+.ep { display: flex; gap: 1rem; align-items: center; padding: .85rem 0; border-top: 1px solid var(--border-subtle); }
+.ep:first-of-type { border-top: 0; }
+.ep .num { flex: 0 0 2.6rem; height: 2.6rem; border-radius: 50%; background: var(--lav); color: var(--nyu-purple);
+  font-weight: 700; display: grid; place-items: center; border: 1px solid #ddd4ff; }
+.ep.on .num { background: var(--nyu-purple); color: #fff; border-color: var(--nyu-purple); }
+.ep .body { flex: 1 1 auto; min-width: 0; }
+.ep h3 { margin: 0; font-size: 1rem; color: var(--nyu-deep); }
+.ep .row { display: flex; gap: .4rem; flex-wrap: wrap; flex: 0 0 auto; }
+@media (max-width: 560px) { .ep { flex-wrap: wrap; } .ep .row { width: 100%; padding-left: 3.6rem; } }
+
+/* share */
+.share { display: grid; grid-template-columns: 210px 1fr; gap: 1.5rem; align-items: center; }
+@media (max-width: 640px) { .share { grid-template-columns: 1fr; justify-items: start; } }
+.qr { background: #fff; border: 1px solid var(--border-subtle); border-radius: .7rem; padding: .7rem; width: 210px; }
+.qr img { width: 100%; display: block; }
+.url { font-family: ui-monospace, Menlo, monospace; font-size: .88rem; background: var(--lav);
+  border: 1px solid #ece4fb; padding: .3rem .6rem; border-radius: .35rem; word-break: break-all; display: inline-block; }
+.share ul { padding-left: 1.1rem; margin: .6rem 0 0; font-size: .9rem; }
+.share li { margin: .25rem 0; }
+.share a, footer a { color: var(--nyu-purple); font-weight: 600; }
+footer { border-top: 1px solid #ddd4ff; padding: 1rem 2rem; background: var(--lav);
+  font-size: .8rem; color: #555; text-align: center; }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="brand"><img src="https://ben-tenoever.github.io/grants/assets/nyulh-logo.png" alt="NYU Langone Health"
+    onerror="this.parentNode.remove()" /></span>
+  <span class="titles">
+    <h1>The Microbiology Podcast</h1>
+    <p>Department of Microbiology &middot; NYU Grossman School of Medicine</p>
+  </span>
+</header>
+
+<nav aria-label="Sections">
+  <a href="#top" class="here">Listen</a>
+  <a href="#episodes">Episodes</a>
+  <a href="#share">Share</a>
+</nav>
+
+<main>
+
+  <section class="card now" aria-label="Now playing">
+    <div class="art"><img src="assets/cover-600.png" alt="The Microbiology Podcast cover art" /></div>
+    <div>
+      <div class="kicker" id="npKicker">Episode</div>
+      <h2 id="npTitle">&nbsp;</h2>
+      <div class="meta" id="npMeta"></div>
+      <p class="summary" id="npSummary"></p>
+
+      <audio id="player" controls preload="metadata"></audio>
+      <div class="speed" role="group" aria-label="Playback speed">
+        <span class="lbl">Speed</span>
+        <button type="button" class="chip" data-rate="1" aria-pressed="true">1&times;</button>
+        <button type="button" class="chip" data-rate="1.25" aria-pressed="false">1.25&times;</button>
+        <button type="button" class="chip" data-rate="1.5" aria-pressed="false">1.5&times;</button>
+        <button type="button" class="chip" data-rate="2" aria-pressed="false">2&times;</button>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" id="npDownload" href="#" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          <span>Download MP3</span></a>
+        <button type="button" class="btn" id="npShare">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/></svg>
+          <span>Share episode</span></button>
+      </div>
+      <div class="toast" id="toast" aria-live="polite"></div>
+
+      <div class="topics" id="npTopics" hidden><h3>In this episode</h3><ol></ol></div>
+    </div>
+  </section>
+
+  <section class="card section-spacer" id="episodes">
+    <h2>Episodes</h2>
+    <div id="eplist"></div>
+  </section>
+
+  <section class="card section-spacer" id="share">
+    <h2>Share the podcast</h2>
+    <div class="share">
+      <div class="qr"><img src="qr/podcast-qr.svg" alt="QR code linking to the podcast page" /></div>
+      <div>
+        <p style="margin-top:0">Scan to listen on any phone &mdash; no app or sign-in needed.</p>
+        <span class="url" id="siteUrl"></span>
+        <ul>
+          <li><a href="qr/podcast-qr-labeled.png" download>Download the QR code</a> for slides, posters, or email</li>
+          <li><a href="feed.xml">Podcast feed (RSS)</a> &mdash; paste into a podcast app to get new episodes automatically</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  The Microbiology Podcast &middot; Department of Microbiology &middot; NYU Grossman School of Medicine &middot;
+  <a href="https://github.com/Ben-tenOever/podcast/issues/new?title=Podcast%20feedback">Send feedback</a>
+</footer>
+
+<script src="episodes.js"></script>
+<script>
+(function () {
+  var P = window.PODCAST, E = P.episodes, player = document.getElementById("player");
+  var MN = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  function $(id) { return document.getElementById(id); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  function fdate(d) { var p = d.split("-"); return MN[+p[1] - 1] + " " + (+p[2]) + ", " + p[0]; }
+  function mins(d) { var p = d.split(":").map(Number); return p.length === 3 ? p[0] * 60 + p[1] : p[0]; }
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  function toast(t) { var el = $("toast"); el.textContent = t; clearTimeout(toast.t); toast.t = setTimeout(function () { el.textContent = ""; }, 3000); }
+  function epUrl(ep) { return P.siteUrl + "#" + ep.id; }
+
+  $("siteUrl").textContent = P.siteUrl.replace(/^https:\/\//, "");
+
+  // episode list
+  $("eplist").innerHTML = E.map(function (ep) {
+    return '<div class="ep" id="row-' + ep.id + '">' +
+      '<div class="num">' + ep.number + '</div>' +
+      '<div class="body"><h3>' + esc(ep.title) + '</h3>' +
+      '<div class="sub">' + fdate(ep.date) + ' &middot; ' + mins(ep.duration) + ' min &middot; ' + ep.sizeMB.toFixed(0) + ' MB</div></div>' +
+      '<div class="row"><button type="button" class="chip" data-play="' + ep.id + '">&#9654; Play</button>' +
+      '<a class="chip" style="text-decoration:none" href="' + esc(ep.audio) + '" download>Download</a></div></div>';
+  }).join("");
+  $("eplist").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-play]"); if (!b) return;
+    load(b.dataset.play, true);
+    $("top").scrollIntoView({ behavior: "smooth" });
+  });
+
+  var cur = null;
+  function load(id, autoplay) {
+    var ep = E.filter(function (x) { return x.id === id; })[0] || E[0];
+    cur = ep;
+    $("npKicker").textContent = "Episode " + ep.number + (ep === E[0] ? " · Latest" : "");
+    $("npTitle").textContent = ep.title;
+    $("npMeta").innerHTML = fdate(ep.date) + " &middot; " + mins(ep.duration) + " min" + (ep.producer ? " &middot; Produced by " + esc(ep.producer) : "");
+    $("npSummary").textContent = ep.summary;
+    $("npDownload").href = ep.audio;
+    $("npDownload").setAttribute("download", ep.audio.split("/").pop());
+    var t = $("npTopics");
+    if (ep.topics && ep.topics.length) { t.querySelector("ol").innerHTML = ep.topics.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join(""); t.hidden = false; }
+    else t.hidden = true;
+    document.querySelectorAll(".ep").forEach(function (r) { r.classList.toggle("on", r.id === "row-" + ep.id); });
+    player.src = ep.audio;
+    player.playbackRate = +(store("rate") || 1);
+    var pos = +(store("pos-" + ep.id) || 0);
+    if (pos > 5) player.addEventListener("loadedmetadata", function f() { player.removeEventListener("loadedmetadata", f); if (pos < player.duration - 10) player.currentTime = pos; });
+    if (autoplay) player.play().catch(function () {});
+    if (location.hash !== "#" + ep.id && E.length > 1) history.replaceState(null, "", "#" + ep.id);
+  }
+
+  // remember where each listener left off (per browser)
+  var last = 0;
+  player.addEventListener("timeupdate", function () {
+    if (!cur || Math.abs(player.currentTime - last) < 5) return;
+    last = player.currentTime; store("pos-" + cur.id, Math.floor(last));
+  });
+  player.addEventListener("ended", function () { if (cur) store("pos-" + cur.id, 0); });
+
+  // speed
+  var chips = document.querySelectorAll(".speed .chip");
+  function setRate(r) { player.playbackRate = r; store("rate", r); chips.forEach(function (c) { c.setAttribute("aria-pressed", +c.dataset.rate === r); }); }
+  chips.forEach(function (c) { c.addEventListener("click", function () { setRate(+c.dataset.rate); }); });
+  player.addEventListener("ratechange", function () { chips.forEach(function (c) { c.setAttribute("aria-pressed", +c.dataset.rate === player.playbackRate); }); });
+
+  // share
+  $("npShare").addEventListener("click", function () {
+    var url = E.length > 1 ? epUrl(cur) : P.siteUrl, data = { title: P.title + " — " + cur.title, text: cur.summary, url: url };
+    if (navigator.share) { navigator.share(data).catch(function () {}); return; }
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { toast("Link copied"); }, function () { toast(url); });
+    else toast(url);
+  });
+
+  load((location.hash || "").slice(1), false);
+  setRate(+(store("rate") || 1));
+  window.addEventListener("hashchange", function () { var id = location.hash.slice(1); if (E.some(function (x) { return x.id === id; })) load(id, false); });
+})();
+</script>
+</body>
+</html>
